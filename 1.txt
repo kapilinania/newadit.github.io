@@ -1,0 +1,40 @@
+pip install django
+django-admin startproject projectname
+cd projectname
+python manage.py startapp appname
+INSTALLED_APPS = [
+    # ...
+    'appname',
+]
+python manage.py makemigrations appname
+python manage.py migrate
+python manage.py runserver
+
+after that make one file name is urls.py
+inside the app folder make one folder templates and inside index.html file
+urls.py inside the app code
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+ after that go  to views.py file
+from django.shortcuts import render
+
+# Create your views here.
+
+def index(request):
+    return render(request, 'index.html')  
+update this code
+
+after go to main app and and urls.py update it..
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('testask.urls')),
+]
+
